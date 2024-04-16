@@ -8,6 +8,8 @@ namespace Ateliers.ForLectures.Interface.LooseCoupling
 {
     // このコードに必要なクラスやインターフェースは、本ファイルである 01-01.LooseCoupling.cs に全て記述しています。
     // このコードを理解するために、他のファイルを確認する必要はありません。
+    // また、この例は .Net Freamework 4.7 (C# 7.3) で示しており、インターフェースにメソッドを定義することができないため、少し冗長になっています。
+    // C# 8.0 以降は、デフォルトメソッドをインターフェースに定義することができるため、もっとスマートに記述することができます。
 
     /// <summary>
     /// LooseCoupling - 疎結合を目的としたインターフェース使用の例
@@ -94,14 +96,14 @@ namespace Ateliers.ForLectures.Interface.LooseCoupling
 
             // 結果を表示
             Console.WriteLine("New Cart Items:");
-            foreach (var item in newCart.items)
+            foreach (var item in newCart.Items)
             {
                 Console.WriteLine($"{item.Name} - {item.Price}");
             }
 
             // 結果を表示
             Console.WriteLine("Old Cart Items:");
-            foreach (var item in oldCart.items)
+            foreach (var item in oldCart.Items)
             {
                 Console.WriteLine($"{item.Name} - {item.Price}");
             }
@@ -117,7 +119,7 @@ namespace Ateliers.ForLectures.Interface.LooseCoupling
         private readonly List<IProduct> _Items = new List<IProduct>();
 
         /// <inheritdoc/>
-        public IEnumerable<IProduct> items => _Items;
+        public IEnumerable<IProduct> Items => _Items;
 
         /// <summary>
         /// ショッピングカートへのアイテム追加
@@ -139,7 +141,7 @@ namespace Ateliers.ForLectures.Interface.LooseCoupling
         private readonly List<IProduct> _Items = new List<IProduct>();
 
         /// <inheritdoc/>
-        public IEnumerable<IProduct> items => _Items;
+        public IEnumerable<IProduct> Items => _Items;
 
         /// <summary>
         /// ショッピングカートへのアイテム追加
@@ -171,7 +173,7 @@ namespace Ateliers.ForLectures.Interface.LooseCoupling
     public interface IShoppingCart<T> where T : class
     {
         /// <summary> カート内の商品リスト </summary>
-        IEnumerable<T> items { get; }
+        IEnumerable<T> Items { get; }
 
         // ↓本当は実装したいが、説明の都合、ビルドエラーになるためコメントアウト
         // void AddItems(IEnumerable<T> items);
